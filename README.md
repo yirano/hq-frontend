@@ -1,20 +1,20 @@
 # HQ - UI test
 
-Welcome to your backend test for HQ, clone the repository and start by
+Welcome to your frontend test for HQ, clone the repository and start by
 following the instructions below.
+
+Here at HQ we do a lot of e-commerce applications every one gets an opportunity to dip their toes in an e-commerce project. This project is a scaffolding of a standard marketplace. This application is designed to test your skills in navigating a next.js application, building react components, making API requests, following existing codebase patterns.
 
 # The goal
 
-Create the necessary components, functions, and page/s and integrate this frontend with the API.
-
-Once you are done your application should be able to render the marketplace and place a successful order.
+Complete this application so that you can render the marketplace navigate to the cart page and ultimately place a successful order. Create the necessary components, functions, and page/s and integrate this frontend with the API.
 
 ## Running the application
 
 - Create an `.env` file with the following variables:
 
 ```
-NEXT_PUBLIC_API_URL="http://localhost:8000/"
+NEXT_PUBLIC_API_URL="http://localhost:8000"
 ```
 
 - Run your BE application
@@ -46,4 +46,5 @@ NEXT_PUBLIC_API_URL="http://localhost:8000/"
 This is not needed for the test but would gain you extra points if you
 manage to fit it within the allocated time.
 
+- Style the whole app or just parts of it, this is the time to show us how creative you can be. Some clients would request just a feature without any design and we have to build them as fast as we can balancing aesthetics, functionality and stability.
 - Create unit tests for the ProductCard component using react-testing-library
