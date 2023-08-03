@@ -1,50 +1,60 @@
-import React, { useState } from "react"
-import { useRouter } from "next/router"
+import React, { useState } from "react";
+import { useRouter } from "next/router";
 import {
   CheckoutForm,
   Flex,
   Text,
   CheckoutProductsSection,
   MarketplaceHeader,
-} from "components"
-import axios from "axios"
-import Loader from "../components/Loader"
-import { useMarketplaceState } from "../context/MarketplaceContextProvider"
+} from "components";
+import axios from "axios";
+import Loader from "../components/Loader";
+import { useMarketplaceState } from "../context/MarketplaceContextProvider";
+import { FormData } from "components/CheckoutForm/CheckoutForm";
 
 const CheckoutPage: React.FC = () => {
   // ============================== HOOKS ===================================
-  const router = useRouter()
-  const state = useMarketplaceState()
+  const router = useRouter();
+  const state = useMarketplaceState();
 
   // ============================== STATES ===================================
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   // ============================== FUNCTIONS ===============================
 
   const calculateTotal = () => {
-    let total = 0
+    let total = 0;
     state?.cart.forEach(item => {
-      total += item.price * item.quantity
-    })
-    return total / 100
-  }
+      total += item.price * item.quantity;
+    });
+    return total / 100;
+  };
 
-  const placeOrder = async () => {
-    setIsLoading(true)
-
+  const placeOrder = async (formData: FormData) => {
+    setIsLoading(true);
+    console.log("STATE CART", state?.cart);
+    const requestBody = {
+      vendor_id: '1', // TODO: replace with actual vendor ID
+      location_id: '1', // TODO: replace with actual location ID
+      cart: state?.cart, // TODO: assuming state.cart is an array of { product_id, quantity }
+      customer_name: formData.customer_name,
+      total: '100' // TODO: replace with actual total cost
+    };
+    console.log("REQUEST BODY ", requestBody);
     try {
-      const { data: checkout } = await axios.post<{ success: boolean }>(
-        `${process.env.NEXT_PUBLIC_API_URL}/products`
-      )
+      const { data: checkout } = await axios.post<{ success: boolean; }>(
+        `${process.env.NEXT_PUBLIC_API_URL}/checkout`,
+        requestBody
+      );
       if (checkout.success) {
-        setIsLoading(false)
-        router.push("/order-confirmation")
+        setIsLoading(false);
+        router.push("/order-confirmation");
       }
     } catch (error) {
-      setIsLoading(false)
-      console.error(error)
+      setIsLoading(false);
+      console.error(error);
     }
-  }
+  };
 
   // ============================== RENDER ===============================
   return (
@@ -66,7 +76,7 @@ const CheckoutPage: React.FC = () => {
         </Flex>
       </Flex>
     </Flex>
-  )
-}
+  );
+};
 
-export default CheckoutPage
+export default CheckoutPage;

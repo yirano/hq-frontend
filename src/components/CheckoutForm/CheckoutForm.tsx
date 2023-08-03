@@ -1,22 +1,22 @@
 // components/CheckoutForm.tsx
-import React from "react"
-import { useForm } from "react-hook-form"
-import { Flex, Input, Button } from "components"
+import React from "react";
+import { useForm } from "react-hook-form";
+import { Flex, Input, Button } from "components";
 
-type FormData = {
-  customer_name: string
-  customer_email: string
-  customer_phone: string
-  delivery_address_line1: string
-  delivery_address_line2: string
-  delivery_address_city: string
-  delivery_address_state: string
-  delivery_address_country: string
-  delivery_address_zipcode: string
-}
+export type FormData = {
+  customer_name: string;
+  customer_email: string;
+  customer_phone: string;
+  delivery_address_line1: string;
+  delivery_address_line2: string;
+  delivery_address_city: string;
+  delivery_address_state: string;
+  delivery_address_country: string;
+  delivery_address_zipcode: string;
+};
 
 interface CheckoutFormProps {
-  onSubmit: (data: FormData) => void
+  onSubmit: (data: FormData) => void;
 }
 
 const CheckoutForm: React.FC<CheckoutFormProps> = ({ onSubmit }) => {
@@ -24,7 +24,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onSubmit }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>()
+  } = useForm<FormData>();
 
   return (
     <Flex
@@ -113,7 +113,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ onSubmit }) => {
 
       <Button type="submit"> {`Place Order`} </Button>
     </Flex>
-  )
-}
+  );
+};
 
-export default CheckoutForm
+export default CheckoutForm;

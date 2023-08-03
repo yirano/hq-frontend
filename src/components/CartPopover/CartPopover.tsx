@@ -1,61 +1,61 @@
-import React, { useCallback, useEffect, useRef } from "react"
-import { useRouter } from "next/router"
+import React, { useCallback, useEffect, useRef } from "react";
+import { useRouter } from "next/router";
 import {
   useMarketplaceState,
   useMarketplaceDispatch,
-} from "context/MarketplaceContextProvider"
-import { Flex, Text, Button } from "components"
-import { FaTrash } from "react-icons/fa"
+} from "context/MarketplaceContextProvider";
+import { Flex, Text, Button } from "components";
+import { FaTrash } from "react-icons/fa";
 
-export interface CarPopOverProps {
-  open: boolean
+export interface CartPopOverProps {
+  open: boolean;
 }
 
-const CartPopover: React.FC<CarPopOverProps> = ({ open }) => {
+const CartPopover: React.FC<CartPopOverProps> = ({ open }) => {
   // ============================== HOOKS ===================================
-  const dispatch = useMarketplaceDispatch()
-  const state = useMarketplaceState()
-  const router = useRouter()
+  const dispatch = useMarketplaceDispatch();
+  const state = useMarketplaceState();
+  const router = useRouter();
 
   // ============================== REFS ===============================
 
-  const popoverRef = useRef<HTMLDivElement>(null)
-  const timeoutRef = useRef<NodeJS.Timeout>()
+  const popoverRef = useRef<HTMLDivElement>(null);
+  const timeoutRef = useRef<NodeJS.Timeout>();
 
-  // ============================== STATES ===================================
-  const [isOpen, setIsOpen] = React.useState(false)
+  // ============================ STATES =================================
+  const [isOpen, setIsOpen] = React.useState(false);
 
-  // ============================== FUNCTIONS ===============================
+  // ============================ FUNCTIONS =============================
 
   const closePopover = useCallback(() => {
-    setIsOpen(false)
+    setIsOpen(false);
     if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current)
+      clearTimeout(timeoutRef.current);
     }
-  }, [])
+  }, []);
 
   const checkout = () => {
-    router.push("/checkout")
-  }
+    router.push("/checkout");
+  };
 
   const goToCart = () => {
-    router.push("/cart")
-  }
+    router.push("/cart");
+  };
 
-  // ============================== USE EFFECTS ===================================
+  // ========================== USE EFFECTS ===============================
 
   useEffect(() => {
     if (state?.cart) {
-      setIsOpen(state?.cart?.length > 0)
-      timeoutRef.current = setTimeout(closePopover, 5000)
+      setIsOpen(state?.cart?.length > 0);
+      timeoutRef.current = setTimeout(closePopover, 5000);
     }
-  }, [closePopover, state?.cart])
+  }, [closePopover, state?.cart]);
 
   useEffect(() => {
     if (open) {
-      setIsOpen(true)
+      setIsOpen(true);
     }
-  }, [open])
+  }, [open]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -63,15 +63,15 @@ const CartPopover: React.FC<CarPopOverProps> = ({ open }) => {
         popoverRef.current &&
         !popoverRef.current.contains(event.target as Node)
       ) {
-        closePopover()
+        closePopover();
       }
-    }
+    };
 
-    document.addEventListener("mousedown", handleClickOutside)
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-  }, [closePopover])
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [closePopover]);
 
   // ============================== RENDER ===============================
 
@@ -109,7 +109,7 @@ const CartPopover: React.FC<CarPopOverProps> = ({ open }) => {
         <Button onClick={goToCart}>Cart</Button>
       </Flex>
     </Flex>
-  )
-}
+  );
+};
 
-export default CartPopover
+export default CartPopover;
