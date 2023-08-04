@@ -21,7 +21,7 @@ const MarketplaceHeader: React.FC = () => {
       position="relative"
       justify="space-between"
       align="center"
-      width="100%"
+      width="90%"
       padding="8px"
       border="2px solid gray"
     >

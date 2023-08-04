@@ -12,9 +12,10 @@ const CartPage: React.FC = () => {
   return (
     <Flex column>
       <MarketplaceHeader />
+      <Text>Your Cart</Text>
       <Flex column alignSelf="flex-start">
-        {state?.cart?.map((product) => (
-          <Flex>
+        {state?.cart?.map((product, idx) => (
+          <Flex key={idx}>
             <Text key={product.id}>{product.name}</Text>
             <Button onClick={() => handleRemoveItem(product.id)} variant="ghost">
               <BiTrash />
