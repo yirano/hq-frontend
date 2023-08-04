@@ -1,5 +1,6 @@
 import { Button, Flex, Text } from "components";
-import { useMarketplaceDispatch, useMarketplaceState } from "context/MarketplaceContextProvider";
+import { useMarketplaceDispatch } from "context/MarketplaceContextProvider";
+import { useRouter } from "next/router";
 
 export interface ProductCardProps {
   product: {
@@ -7,15 +8,25 @@ export interface ProductCardProps {
     name: string;
     price: number;
     vendor_id: number;
-  }; // TODO: Come back and verify this type
+  };
 }
+
+enum ActionType {
+  ADD_TO_CART,
+  BUY_NOW
+}
+
 const ProductCard = ({ product }: ProductCardProps) => {
 
   const dispatch = useMarketplaceDispatch();
-  const state = useMarketplaceState();
+  const router = useRouter();
 
-  const handleClick = () => {
+  const handleAddToCart = (action: ActionType) => {
     dispatch({ type: "SET_CART", payload: product });
+
+    if (action === ActionType.BUY_NOW) {
+      router.push("/checkout");
+    }
   };
 
   // ========================== RENDER ===============================
@@ -29,7 +40,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
     >
       <Text kind="f2">{product.name}</Text>
       <Text kind="f7">{product.price}</Text>
-      <Button onClick={handleClick}>Add to Cart</Button>
+      <Button onClick={() => handleAddToCart(ActionType.ADD_TO_CART)}>Add to Cart</Button>
+      <Button onClick={() => handleAddToCart(ActionType.BUY_NOW)}>Buy Now</Button>
     </Flex>
   );
 };

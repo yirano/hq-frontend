@@ -34,7 +34,7 @@ const CheckoutPage: React.FC = () => {
     setIsLoading(true);
     console.log("STATE CART", state?.cart);
     const requestBody = {
-      vendor_id: '1', // TODO: replace with actual vendor ID
+      vendor_id: state?.cart[0].vendor_id, // TODO: replace with actual vendor ID
       location_id: '1', // TODO: replace with actual location ID
       cart: state?.cart, // TODO: assuming state.cart is an array of { product_id, quantity }
       customer_name: formData.customer_name,

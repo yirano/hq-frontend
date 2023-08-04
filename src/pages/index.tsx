@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { ProductCard, Flex } from "components";
-import { Product } from "context/MarketplaceContextProvider";
+import { Product, useMarketplaceState } from "context/MarketplaceContextProvider";
 import dynamic from "next/dynamic";
 
 const MarketplaceHeader = dynamic(
@@ -14,14 +14,15 @@ const Home: React.FC = () => {
 
   // ============================== FUNCTIONS ===============================
 
+  // TODO: vendor_id + location_id should be dynamic
   const getProducts = useCallback(async () => {
+    const vendorId = 1;
     try {
       const { data: productsRes } = await axios.get<Product[]>(
         // `${process.env.NEXT_PUBLIC_API_URL}/products`
-        `${process.env.NEXT_PUBLIC_API_URL}/locations/1/vendors/1`
+        `${process.env.NEXT_PUBLIC_API_URL}/locations/1/vendors/${vendorId}`
       );
       if (productsRes) {
-        console.log("PRODUCT ", productsRes);
         setProducts(productsRes);
       }
     } catch (error) {
@@ -33,7 +34,6 @@ const Home: React.FC = () => {
   useEffect(() => {
     getProducts();
   }, [getProducts]);
-
 
   // ============================== RENDER ===============================
   return (
