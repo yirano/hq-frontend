@@ -19,11 +19,16 @@ export interface CartItem extends Product {
 
 export interface MarketplaceState {
   cart: CartItem[];
+  vendorId: null | number;
+  locationId: null | number;
+  products: Product[];
 }
 
 type Action =
   | { type: "SET_CART"; payload: Product; }
-  | { type: "REMOVE_ITEM"; payload: number; };
+  | { type: "REMOVE_ITEM"; payload: number; }
+  | { type: "SET_PRODUCTS"; payload: Product[]; };
+
 
 type Dispatch = (action: Action) => void;
 
@@ -48,6 +53,9 @@ const existingCart = !isSSR ? JSON.parse(sessionStorage.getItem("cart")!) : [];
 const initialState: MarketplaceState = {
   // state
   cart: existingCart,
+  vendorId: null,
+  locationId: null,
+  products: []
 };
 
 const reducer = (state: MarketplaceState, action: Action): MarketplaceState => {
@@ -84,6 +92,12 @@ const reducer = (state: MarketplaceState, action: Action): MarketplaceState => {
       return {
         ...state,
         cart: newCart,
+      };
+    }
+    case "SET_PRODUCTS": {
+      return {
+        ...state,
+        products: action.payload,
       };
     }
   }

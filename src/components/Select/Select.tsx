@@ -1,47 +1,36 @@
 import React, { forwardRef } from "react";
-import * as Styled from "./Input.styled";
+import * as Styled from "./Select.styled";
+import * as InputStyled from "../Input/Input.styled";
 import type { UseFormRegisterReturn } from "react-hook-form";
 
-export type InputType = {
+export type SelectProps = {
   error?: string;
   className?: string;
   marginBottom?: string;
   margin?: string;
   border?: string;
-  isValid?: boolean;
-  label?: string;
-  type?: string;
+  options?: { value: string | number; label: string; disabled?: boolean; selected?: true; }[];
   register?: UseFormRegisterReturn;
   value?: any;
   name?: string;
   width?: string;
   padding?: string;
   hidden?: boolean;
-  flexGrow?: string;
-  flexShrink?: string;
   placeholder?: string;
   defaultValue?: string;
   disabled?: boolean;
-  step?: string;
-  min?: string | number;
-  max?: string | number;
-  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
-  ref?: React.Ref<HTMLInputElement>;
+  ref?: React.Ref<HTMLSelectElement>;
   id?: string;
   weight?: string;
   fontFamily?: string;
   background?: string;
+  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-const Input = forwardRef<HTMLInputElement, InputType>(
+const Select = forwardRef<HTMLSelectElement, SelectProps>(
   (
     {
       error: hasError,
-      isValid,
-      label,
-      type,
       className,
       marginBottom,
       margin,
@@ -52,30 +41,24 @@ const Input = forwardRef<HTMLInputElement, InputType>(
       fontFamily,
       background,
       hidden,
-      flexGrow,
-      flexShrink,
       onChange,
-      ...inputProps
+      options = [],
+      ...selectProps
     },
     ref
   ) => {
     return (
-      <Styled.LabelStyled
+      <InputStyled.LabelStyled
         {...{
           width,
           hidden,
           marginBottom,
           className,
-          isValid,
           hasError,
-          flexGrow,
-          flexShrink,
         }}
       >
-        {label}
-        <Styled.InputStyled
+        <Styled.SelectStyled
           {...{
-            type,
             className,
             padding,
             weight,
@@ -87,18 +70,20 @@ const Input = forwardRef<HTMLInputElement, InputType>(
             hidden,
             onChange,
             ref,
-            ...inputProps,
+            ...selectProps,
           }}
-        />
-      </Styled.LabelStyled>
+        >
+          {options.map((option) => (
+            <option key={option.value} disabled={option.disabled} selected={option.selected} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </Styled.SelectStyled>
+      </InputStyled.LabelStyled>
     );
   }
 );
 
-Input.defaultProps = {
-  type: "text",
-};
+Select.displayName = "Select";
 
-Input.displayName = "Input";
-
-export default Input;
+export default Select;

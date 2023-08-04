@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, use } from "react";
 import axios from "axios";
-import { ProductCard, Flex } from "components";
-import { Product, useMarketplaceState } from "context/MarketplaceContextProvider";
+import { ProductCard, Flex, Select, Filter } from "components";
+import { Product, useMarketplaceDispatch, useMarketplaceState } from "context/MarketplaceContextProvider";
 import dynamic from "next/dynamic";
 
 const MarketplaceHeader = dynamic(
@@ -11,7 +11,8 @@ const MarketplaceHeader = dynamic(
 
 const Home: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
-
+  const dispatch = useMarketplaceDispatch();
+  const state = useMarketplaceState();
   // ============================== FUNCTIONS ===============================
 
   // TODO: vendor_id + location_id should be dynamic
@@ -19,11 +20,10 @@ const Home: React.FC = () => {
     const vendorId = 1;
     try {
       const { data: productsRes } = await axios.get<Product[]>(
-        // `${process.env.NEXT_PUBLIC_API_URL}/products`
-        `${process.env.NEXT_PUBLIC_API_URL}/locations/1/vendors/${vendorId}`
+        `${process.env.NEXT_PUBLIC_API_URL}/products`
       );
       if (productsRes) {
-        setProducts(productsRes);
+        dispatch({ type: 'SET_PRODUCTS', payload: productsRes });
       }
     } catch (error) {
       console.error(error);
@@ -39,8 +39,9 @@ const Home: React.FC = () => {
   return (
     <Flex column>
       <MarketplaceHeader />
+      <Filter />
       <Flex gap="16px" margin="32px 16px 0">
-        {products.map(product => (
+        {state?.products.map(product => (
           <ProductCard key={product.id} product={product} />
         ))}
       </Flex>

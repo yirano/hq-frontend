@@ -1,27 +1,27 @@
-import { colors } from "consts"
-import styled from "@emotion/styled"
+import { colors } from "consts";
+import styled from "@emotion/styled";
 
 interface InputProps {
-  padding?: string
-  cursor?: string
-  background?: string
-  fontFamily?: string
-  color?: string
-  weight?: string
-  minWidth?: string
-  maxWidth?: string
-  margin?: string
-  width?: string
-  border?: string
-  borderRadius?: string
-  outline?: string
+  padding?: string;
+  cursor?: string;
+  background?: string;
+  fontFamily?: string;
+  color?: string;
+  weight?: string;
+  minWidth?: string;
+  maxWidth?: string;
+  margin?: string;
+  width?: string;
+  border?: string;
+  borderRadius?: string;
+  outline?: string;
 }
 
 interface LabelProps {
-  flexGrow?: string
-  flexShrink?: string
-  marginBottom?: string
-  width?: string
+  flexGrow?: string;
+  flexShrink?: string;
+  marginBottom?: string;
+  width?: string;
 }
 
 export const InputStyled = styled.input<InputProps>`
@@ -78,7 +78,7 @@ export const InputStyled = styled.input<InputProps>`
     color: ${colors.tukiosInputGray};
     font-family: "Inter", sans-serif;
   }
-`
+`;
 
 export const LabelStyled = styled.label<LabelProps>`
   background: ${colors.gray60};
@@ -109,4 +109,4 @@ export const LabelStyled = styled.label<LabelProps>`
     padding: 0;
     border-bottom: none;
   }
-`
+`;
