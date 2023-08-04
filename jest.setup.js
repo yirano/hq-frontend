@@ -2,9 +2,8 @@ import "@testing-library/jest-dom/extend-expect"
 
 module.exports = {
   preset: "ts-jest",
-  testEnvironment: "node",
+  testEnvironment: "jsdom",
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
-  testPathIgnorePatterns: ["./.next/", "./node_modules/"],
   transform: {
     "^.+\\.(ts|tsx)$": "ts-jest",
   },
