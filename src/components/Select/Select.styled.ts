@@ -30,10 +30,7 @@ export const SelectStyled = styled.select<SelectProps>`
   line-height: 24px;
   color: ${({ color = colors.black }) => color};
   font-weight: ${({ weight = "normal" }) => weight};
-
   :focus {
     outline: none;
   }
-
-  // Add the rest of your input styles here
 `;

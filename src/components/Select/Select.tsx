@@ -47,6 +47,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
     },
     ref
   ) => {
+
     // ========================== RENDER =============================
     return (
       <InputStyled.LabelStyled
