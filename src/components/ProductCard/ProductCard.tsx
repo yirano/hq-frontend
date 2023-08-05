@@ -18,12 +18,10 @@ enum ActionType {
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
-  const state = useMarketplaceState();
   const dispatch = useMarketplaceDispatch();
   const router = useRouter();
-
   const handleAddToCart = (action: ActionType) => {
-    dispatch({ type: "SET_CART", payload: { ...product, location_id: Number(state?.locationId) } });
+    dispatch({ type: "SET_CART", payload: product });
     if (action === ActionType.BUY_NOW) {
       router.push("/checkout");
     }
