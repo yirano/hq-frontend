@@ -9,6 +9,7 @@ export interface ProductCardProps {
     name: string;
     price: number;
     vendor_id: number;
+    location_id: number;
   };
 }
 
