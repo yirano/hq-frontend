@@ -11,6 +11,7 @@ export interface Product {
   name: string;
   price: number;
   vendor_id: number;
+  location_id: number;
 }
 
 export interface CartItem extends Product {

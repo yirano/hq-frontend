@@ -32,15 +32,15 @@ const CheckoutPage: React.FC = () => {
 
   const placeOrder = async (formData: FormData) => {
     setIsLoading(true);
-    console.log("STATE CART", state?.cart);
+    const cartTotal = state?.cart?.reduce(
+      (total, product) => total + product.quantity * product.price,
+      0
+    ) ?? 0;
     const requestBody = {
-      vendor_id: state?.cart[0].vendor_id, // TODO: replace with actual vendor ID
-      location_id: '1', // TODO: replace with actual location ID
-      cart: state?.cart, // TODO: assuming state.cart is an array of { product_id, quantity }
+      cart: state?.cart,
       customer_name: formData.customer_name,
-      total: '100' // TODO: replace with actual total cost
+      total: cartTotal
     };
-    console.log("REQUEST BODY ", requestBody);
     try {
       const { data: checkout } = await axios.post<{ success: boolean; }>(
         `${process.env.NEXT_PUBLIC_API_URL}/checkout`,

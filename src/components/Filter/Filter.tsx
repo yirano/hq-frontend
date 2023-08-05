@@ -45,13 +45,13 @@ const Filter = () => {
   };
 
   return (
-    <Flex column>
+    <Flex column padding="20px 0 0">
       <Select
         width="400px"
         placeholder="Select Location"
         value={selectedLocation || "0"}
         options={[
-          { value: '0', label: 'Select Location', disabled: true, selected: true },
+          { value: '0', label: 'Select Location', disabled: true },
           { value: '1', label: 'Pineview Reservoir' },
           { value: '2', label: 'Park City' },
         ]}
@@ -63,7 +63,7 @@ const Filter = () => {
           placeholder="Select Vendor"
           value={selectedVendor || "0"}
           options={[
-            { value: '0', label: 'Select Vendor', disabled: true, selected: true },
+            { value: '0', label: 'Select Vendor', disabled: true },
             ...vendors.map((vendor: any) => {
               return { value: vendor.id, label: vendor.name };
             })
@@ -73,7 +73,7 @@ const Filter = () => {
       )}
       <Flex>
         <Button onClick={searchProducts} disabled={!selectedLocation || !selectedVendor}>Search</Button>
-        <Button onClick={resetProducts}>Reset</Button>
+        <Button onClick={resetProducts} disabled={!selectedLocation && !selectedVendor}>Reset</Button>
       </Flex>
     </Flex>
   );

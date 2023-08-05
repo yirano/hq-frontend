@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Flex, Text } from "components";
-import { useMarketplaceDispatch } from "context/MarketplaceContextProvider";
+import { useMarketplaceDispatch, useMarketplaceState } from "context/MarketplaceContextProvider";
 import { useRouter } from "next/router";
 
 export interface ProductCardProps {
@@ -18,13 +18,12 @@ enum ActionType {
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
-
+  const state = useMarketplaceState();
   const dispatch = useMarketplaceDispatch();
   const router = useRouter();
 
   const handleAddToCart = (action: ActionType) => {
-    dispatch({ type: "SET_CART", payload: product });
-
+    dispatch({ type: "SET_CART", payload: { ...product, location_id: Number(state?.locationId) } });
     if (action === ActionType.BUY_NOW) {
       router.push("/checkout");
     }

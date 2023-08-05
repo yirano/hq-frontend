@@ -15,9 +15,7 @@ const Home: React.FC = () => {
   const state = useMarketplaceState();
   // ============================== FUNCTIONS ===============================
 
-  // TODO: vendor_id + location_id should be dynamic
   const getProducts = useCallback(async () => {
-    const vendorId = 1;
     try {
       const { data: productsRes } = await axios.get<Product[]>(
         `${process.env.NEXT_PUBLIC_API_URL}/products`
