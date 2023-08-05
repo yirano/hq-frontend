@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback, use } from "react";
 import axios from "axios";
-import { ProductCard, Flex, Select, Filter } from "components";
+import { ProductCard, Flex, Filter } from "components";
 import { Product, useMarketplaceDispatch, useMarketplaceState } from "context/MarketplaceContextProvider";
 import dynamic from "next/dynamic";
 

@@ -1,14 +1,18 @@
 import axios from "axios";
 import { Button, Flex, Select } from "components";
 import { useMarketplaceDispatch } from "context/MarketplaceContextProvider";
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const Filter = () => {
+  // =========================== STATE ===============================
   const [vendors, setVendors] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [selectedVendor, setSelectedVendor] = useState(null);
+
+  // =========================== CONTEXT ===============================
   const dispatch = useMarketplaceDispatch();
 
+  // =========================== FUNCTIONS ===============================
   const handleLocation = async (e: any) => {
     setSelectedLocation(e.target.value);
     setSelectedVendor(null);
@@ -44,6 +48,7 @@ const Filter = () => {
     }
   };
 
+  // ========================= RENDER ============================
   return (
     <Flex column padding="20px 0 0">
       <Select
