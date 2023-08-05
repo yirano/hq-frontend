@@ -1,8 +1,7 @@
-import React from "react";
-import { Button, Flex, Text } from "components";
-import { useMarketplaceDispatch } from "context/MarketplaceContextProvider";
 import { useRouter } from "next/router";
+import { useMarketplaceDispatch } from "context/MarketplaceContextProvider";
 import { pricify } from "utils";
+import { Button, Flex, Text } from "components";
 
 export interface ProductCardProps {
   product: {

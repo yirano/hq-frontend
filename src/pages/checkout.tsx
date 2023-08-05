@@ -58,7 +58,7 @@ const CheckoutPage: React.FC = () => {
 
   // ============================== RENDER ===============================
   return (
-    <Flex column>
+    <Flex column width="90%" margin="0 auto">
       {isLoading && (
         <Loader text="We are processing your order. Please don't navigate away or refresh this page." />
       )}

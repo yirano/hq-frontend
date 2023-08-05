@@ -15,6 +15,8 @@ const CartPage: React.FC = () => {
   const handleRemoveItem = (id: number) => {
     dispatch({ type: "REMOVE_ITEM", payload: id });
   };
+
+  // =========================== RENDER ===============================
   return (
     <Flex column width="90%" margin="0 auto">
       <MarketplaceHeader />
