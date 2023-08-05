@@ -25,7 +25,7 @@ const CartPage: React.FC = () => {
   return (
     <Flex column width="90%" margin="0 auto">
       <MarketplaceHeader />
-      <Text kind="f2" transform="uppercase" margin="20px 0">Your Cart</Text>
+      <Text kind="f1" margin="20px 0">Your Cart</Text>
       <Flex column width="80%" margin="auto" gap="1em">
         <Flex
           column

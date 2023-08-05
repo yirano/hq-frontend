@@ -37,7 +37,7 @@ const Home: React.FC = () => {
     <Flex column width="90%" margin="auto">
       <MarketplaceHeader />
       <Filter />
-      <Flex gap="16px" margin="32px 16px 0" flexWrap="wrap" justify="center">
+      <Flex gap="10px" margin="32px 16px 0" flexWrap="wrap" justify="center">
         {state?.products.map(product => (
           <ProductCard key={product.id} product={product} />
         ))}

@@ -34,7 +34,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       padding="1em"
       gap="1em"
       border="1px solid #ccc"
-      minWidth="250px"
+      minWidth="220px"
       borderRadius="8px"
       boxShadow="0 3px 4px #cccccc4a"
     >

@@ -56,7 +56,7 @@ const CheckoutPage: React.FC = () => {
       )}
       <MarketplaceHeader />
       <Flex column width="100%" maxWidth="1080px">
-        <Text kind="f1" margin="0 0 32px">
+        <Text kind="f1" margin="20px 0">
           {`Checkout`}
         </Text>
 
