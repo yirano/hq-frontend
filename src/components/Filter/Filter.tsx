@@ -1,19 +1,24 @@
+import React, { ChangeEvent, useState } from 'react';
 import axios from "axios";
 import { Button, Flex, Select } from "components";
 import { useMarketplaceDispatch } from "context/MarketplaceContextProvider";
-import React, { useState } from 'react';
+
+type Vendor = {
+  id: number | number;
+  name: string;
+};
 
 const Filter = () => {
   // =========================== STATE ===============================
-  const [vendors, setVendors] = useState([]);
-  const [selectedLocation, setSelectedLocation] = useState(null);
-  const [selectedVendor, setSelectedVendor] = useState(null);
+  const [vendors, setVendors] = useState<Vendor[]>([]);
+  const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
+  const [selectedVendor, setSelectedVendor] = useState<string | null>(null);
 
   // =========================== CONTEXT ===============================
   const dispatch = useMarketplaceDispatch();
 
   // =========================== FUNCTIONS ===============================
-  const handleLocation = async (e: any) => {
+  const handleLocation = async (e: ChangeEvent<HTMLSelectElement>) => {
     setSelectedLocation(e.target.value);
     setSelectedVendor(null);
     try {
@@ -24,7 +29,7 @@ const Filter = () => {
     }
   };
 
-  const handleVendor = (e: any) => {
+  const handleVendor = (e: ChangeEvent<HTMLSelectElement>) => {
     setSelectedVendor(e.target.value);
   };
 

@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import axios from "axios";
+import { useMarketplaceState } from "context/MarketplaceContextProvider";
 import {
   CheckoutForm,
   Flex,
   Text,
   CheckoutProductsSection,
   MarketplaceHeader,
+  Loader
 } from "components";
-import axios from "axios";
-import Loader from "../components/Loader";
-import { useMarketplaceState } from "../context/MarketplaceContextProvider";
 import { FormData } from "components/CheckoutForm/CheckoutForm";
 
 const CheckoutPage: React.FC = () => {
@@ -21,14 +21,6 @@ const CheckoutPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   // ============================== FUNCTIONS ===============================
-
-  const calculateTotal = () => {
-    let total = 0;
-    state?.cart.forEach(item => {
-      total += item.price * item.quantity;
-    });
-    return total / 100;
-  };
 
   const placeOrder = async (formData: FormData) => {
     setIsLoading(true);

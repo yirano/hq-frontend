@@ -1,7 +1,14 @@
 import React, { forwardRef } from "react";
+import type { UseFormRegisterReturn } from "react-hook-form";
 import * as Styled from "./Select.styled";
 import * as InputStyled from "../Input/Input.styled";
-import type { UseFormRegisterReturn } from "react-hook-form";
+
+interface Option {
+  value: string | number;
+  label: string;
+  disabled?: boolean;
+  selected?: boolean;
+}
 
 export type SelectProps = {
   error?: string;
@@ -9,7 +16,7 @@ export type SelectProps = {
   marginBottom?: string;
   margin?: string;
   border?: string;
-  options?: { value: string | number; label: string; disabled?: boolean; selected?: true; }[];
+  options?: Option[];
   register?: UseFormRegisterReturn;
   value?: any;
   name?: string;
@@ -27,7 +34,7 @@ export type SelectProps = {
   onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-const Select = forwardRef<HTMLSelectElement, SelectProps>(
+const Select: React.FC<SelectProps> = forwardRef<HTMLSelectElement, SelectProps>(
   (
     {
       error: hasError,
