@@ -76,7 +76,7 @@ const Filter = () => {
           onChange={handleVendor}
         />
       )}
-      <Flex>
+      <Flex gap="10px">
         <Button onClick={searchProducts} disabled={!selectedLocation || !selectedVendor}>Search</Button>
         <Button onClick={resetProducts} disabled={!selectedLocation && !selectedVendor}>Reset</Button>
       </Flex>

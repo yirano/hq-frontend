@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Flex, Text } from "components";
 import { useMarketplaceDispatch } from "context/MarketplaceContextProvider";
 import { useRouter } from "next/router";
+import { pricify } from "utils";
 
 export interface ProductCardProps {
   product: {
@@ -38,12 +39,17 @@ const ProductCard = ({ product }: ProductCardProps) => {
       display="flex"
       padding="1em"
       gap="1em"
-      border="1px solid #ccc"
+      border="1px solid #eee"
+      minWidth="250px"
+      borderRadius="5px"
+      boxShadow="0 3px 4px #cccccc4a"
     >
       <Text kind="f2">{product.name}</Text>
-      <Text kind="f7">{product.price}</Text>
-      <Button onClick={() => handleAddToCart(ActionType.ADD_TO_CART)}>Add to Cart</Button>
-      <Button onClick={() => handleAddToCart(ActionType.BUY_NOW)}>Buy Now</Button>
+      <Text kind="f4">{`$${pricify(product.price)}`}</Text>
+      <Flex gap="10px">
+        <Button onClick={() => handleAddToCart(ActionType.ADD_TO_CART)}>Add to Cart</Button>
+        <Button onClick={() => handleAddToCart(ActionType.BUY_NOW)}>Buy Now</Button>
+      </Flex>
     </Flex>
   );
 };

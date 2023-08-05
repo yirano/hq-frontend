@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, use } from "react";
+import React, { useEffect, useCallback } from "react";
 import axios from "axios";
 import { ProductCard, Flex, Filter } from "components";
 import { Product, useMarketplaceDispatch, useMarketplaceState } from "context/MarketplaceContextProvider";
@@ -10,7 +10,6 @@ const MarketplaceHeader = dynamic(
 );
 
 const Home: React.FC = () => {
-  const [products, setProducts] = useState<Product[]>([]);
   const dispatch = useMarketplaceDispatch();
   const state = useMarketplaceState();
   // ============================== FUNCTIONS ===============================
@@ -38,7 +37,7 @@ const Home: React.FC = () => {
     <Flex column>
       <MarketplaceHeader />
       <Filter />
-      <Flex gap="16px" margin="32px 16px 0">
+      <Flex gap="16px" margin="32px 16px 0" flexWrap="wrap" justify="center">
         {state?.products.map(product => (
           <ProductCard key={product.id} product={product} />
         ))}
