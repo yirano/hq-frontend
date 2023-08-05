@@ -34,7 +34,7 @@ const Home: React.FC = () => {
 
   // ============================== RENDER ===============================
   return (
-    <Flex column>
+    <Flex column width="90%" margin="auto">
       <MarketplaceHeader />
       <Filter />
       <Flex gap="16px" margin="32px 16px 0" flexWrap="wrap" justify="center">

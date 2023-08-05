@@ -39,9 +39,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
       display="flex"
       padding="1em"
       gap="1em"
-      border="1px solid #eee"
+      border="1px solid #ccc"
       minWidth="250px"
-      borderRadius="5px"
+      borderRadius="8px"
       boxShadow="0 3px 4px #cccccc4a"
     >
       <Text kind="f2">{product.name}</Text>

@@ -33,7 +33,7 @@ const CartPage: React.FC = () => {
         >
           {state?.cart?.map((product, idx) => (
             <Flex key={idx} >
-              <Text key={product.id}>{product.name}</Text>
+              <Text key={product.id}>{product.name} x{product.quantity}</Text>
               <Button onClick={() => handleRemoveItem(product.id)} variant="ghost">
                 <BiTrash />
               </Button>
