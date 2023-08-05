@@ -1,6 +1,7 @@
+import { useRouter } from "next/router";
 import { Button, Flex, MarketplaceHeader, Text } from "components";
 import { useMarketplaceDispatch, useMarketplaceState } from "context/MarketplaceContextProvider";
-import { useRouter } from "next/router";
+import { ActionType } from "utils";
 import { BiTrash } from "react-icons/bi";
 
 const CartPage: React.FC = () => {
@@ -9,8 +10,12 @@ const CartPage: React.FC = () => {
   const route = useRouter();
 
   // =========================== FUNCTIONS ============================
-  const handleContinueShopping = () => {
-    route.push("/");
+  const handleAction = (action: ActionType) => {
+    if (action === ActionType.CHECKOUT) {
+      route.push("/checkout");
+    } else if (action === ActionType.CONTINUE_SHOPPING) {
+      route.push("/");
+    }
   };
   const handleRemoveItem = (id: number) => {
     dispatch({ type: "REMOVE_ITEM", payload: id });
@@ -42,7 +47,10 @@ const CartPage: React.FC = () => {
             </Flex>
           ))}
         </Flex>
-        <Button onClick={handleContinueShopping}>Continue Shopping</Button>
+        <Flex gap="10px">
+          <Button onClick={() => handleAction(ActionType.CONTINUE_SHOPPING)}>Continue Shopping</Button>
+          <Button onClick={() => handleAction(ActionType.CHECKOUT)}>Checkout</Button>
+        </Flex>
       </Flex>
     </Flex>
   );

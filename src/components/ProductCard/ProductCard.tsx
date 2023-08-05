@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useMarketplaceDispatch } from "context/MarketplaceContextProvider";
-import { pricify } from "utils";
+import { ActionType, pricify } from "utils";
 import { Button, Flex, Text } from "components";
 
 export interface ProductCardProps {
@@ -11,11 +11,6 @@ export interface ProductCardProps {
     vendor_id: number;
     location_id: number;
   };
-}
-
-enum ActionType {
-  ADD_TO_CART,
-  BUY_NOW
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
